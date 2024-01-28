@@ -19,4 +19,4 @@ pip install -r requirements.txt
 # To Run the annotator
 python -m gui
 ```
-![Whole App Image]('utils/Readme/App_full_image.png')
+![Whole App Image](utils/Readme/App_full_image.png)
