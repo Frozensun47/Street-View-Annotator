@@ -18,7 +18,7 @@ from utils.streetview import GLWidget
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Equirectangular 360° Viewer")
+        self.setWindowTitle("Street View Annotator")
         self.setWindowIcon(QtGui.QIcon("icon.png"))
         # self.image = 'utils/demo_image.jpg'
         # self.depth = 'utils/demo_depth.npy'
