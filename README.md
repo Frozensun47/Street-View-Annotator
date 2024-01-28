@@ -8,7 +8,7 @@
   - [Street View Display](#street-view-display)
   - [Right Side Buttons](#right-side-buttons)
   - [Aerial View Map](#aerial-view-map)
-  - [Issues/bugs](#Issues)
+  - [To-do/ Issues/ bugs](#Issues)
 
 ## Installation and Run
 
