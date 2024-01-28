@@ -61,7 +61,7 @@ In the middle, there is the street view display with functionalities:
 ## Side Buttons
 On the top right side, there are various buttons:
 
-- **Text Input Box:** Paste latitude and longitude for quick marker placement.
+- **Text Input Box:** Paste latitude and longitude for quick marker placement.(format: 18.9198,72.8287 )
 - **Update Map:** Press to update the map with the entered coordinates. (To be pressed after Text Input Box input is provided)
 
 <img src="https://github.com/Frozensun47/Street-View-Annotator/blob/main/utils/Readme/markers.png" alt="markers" width="200" height="200">
