@@ -33,11 +33,11 @@ python -m gui
 
 After opening the app, follow these steps:
 
-1. Go to the aerial view map and navigate to desired location.
+1. Go to the aerial view map(on the right) and navigate to desired location.
 2. Left-click to drop a marker on the  specific location.
 3. Click the "Get Panorama Image" button to load the corresponding street view panorama.
     (the street view display should now be changed with new panorma)
-4. In the street view display, left-click to enter, move the mouse to navigate, and right-click to drop markers(in the street view display).
+4. In the street view display(on the left), left-click to enter, move the mouse to navigate, and right-click to drop markers(in the street view display).
 5. After dropping markers, click the "Get Polygon" button to show polygons on the map.
 
 
