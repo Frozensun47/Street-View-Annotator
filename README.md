@@ -37,6 +37,9 @@ The app consists of three main components:
 On the left, there is a side bar containing stroke width and color selection tools, and a display area for visualizing and editing the coordinates of points being plotted.
 
 ## Street View Display
+
+![street-view-gif](utils\Readme\street_view_marker.gif)
+
 In the middle, there is the street view display with functionalities:
 
 - **Navigate:** Left-click inside the street view display area and move the mouse.
