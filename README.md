@@ -75,6 +75,9 @@ On the top right side, there are various buttons:
 <img src="https://github.com/Frozensun47/Street-View-Annotator/blob/main/utils/Readme/Aerial_view_polygon.png" alt="remove_marker" width="200" height="200">
 
 - **Remove Polygon:** Removes all drawn polygons on the map.
+
+<img src="https://github.com/Frozensun47/Street-View-Annotator/blob/main/utils/Readme/remove_polygon.png" alt="remove_polygon" width="200" height="200">
+
 - **Get Panorama Image:** Fetches the panorama of the last placed marker on the map and shows it to the street view display.
 
 
