@@ -2,12 +2,12 @@
 
 ## Table of Contents
 - [Installation and Run](#installation-and-run)
+- [Tutorial](#tutorial)
 - [App Overview](#app-overview)
   - [Side Bar](#side-bar)
   - [Street View Display](#street-view-display)
   - [Right Side Buttons](#right-side-buttons)
   - [Aerial View Map](#aerial-view-map)
-  - [Tutorial](#tutorial)
 
 ## Installation and Run
 
@@ -28,13 +28,25 @@ pip install -r requirements.txt
 # To Run the annotator
 python -m gui
 ```
+## Tutorial
+![App Overview Image](utils/Readme/App_full_image.png)
 
-# App Overview
+After opening the app, follow these steps:
+
+1. Go to the aerial view map and navigate to desired location.
+2. Left-click to drop a marker on the  specific location.
+3. Click the "Get Panorama Image" button to load the corresponding street view panorama.
+    (the street view display should now be changed with new panorma)
+4. In the street view display, left-click to enter, move the mouse to navigate, and right-click to drop markers(in the street view display).
+5. After dropping markers, click the "Get Polygon" button to show polygons on the map.
+
+
+# App Overview and functions
 
 The app consists of three main components:
 
 ## Side Bar
-On the left, there is a side bar containing stroke width and color selection tools, and a display area for visualizing and editing the coordinates of points being plotted.
+On the left, there is a side bar containing stroke width and color selection tools, and a display area for visualizing and editing the coordinates(lat-long) of points being plotted.
 
 ## Street View Display
 
@@ -42,38 +54,25 @@ On the left, there is a side bar containing stroke width and color selection too
 
 In the middle, there is the street view display with functionalities:
 
-- **Navigate:** Left-click inside the street view display area and move the mouse.
+- **Navigate:** Left-click (and keep pressing) inside the street view display area and move the mouse.Scroll up and down to set the FOV.
 - **Add Markers:** Right-click to add markers.
 
-## Right Side Buttons
-On the right side, there are various buttons:
+## Side Buttons
+On the top right side, there are various buttons:
 
 - **Text Input Box:** Paste latitude and longitude for quick marker placement.
-- **Update Map:** Press to update the map with the entered coordinates.
+- **Update Map:** Press to update the map with the entered coordinates.(To be pressed after Text Input Box input is provided)
 - **Remove Marker:** Removes all markers on the map.
+- **Get Polygon:** Draws polygons on the aerial view map corresponding to markers in the street view map.(more than 3 markers in the street view is required)
 - **Remove Polygon:** Removes all drawn polygons on the map.
-- **Get Polygon:** Draws polygons on the aerial view map corresponding to markers in the street view map.
-- **Get Panorama Image:** Fetches the panorama of the last placed marker on the map.
+- **Get Panorama Image:** Fetches the panorama of the last placed marker on the map and shows it to the street view display.
 
 ## Aerial View Map
 Functionalities:
 
-- Left-click and drag to move the map.
+- Left-click and drag to move/navigate the map.
 - Scroll to zoom in and out.
 - Left-click to place a marker.
 - Double-click a marker to remove it.
 - Click once on a marker to get its latitude and longitude.
 - Use + and - symbols to zoom in and out.
-
-## Tutorial
-![App Overview Image](utils/Readme/App_full_image.png)
-
-After opening the app, follow these steps:
-
-1. Go to the aerial view map and position it.
-2. Left-click to drop a marker on the aerial view map.
-3. Click the "Get Panorama Image" button to load the corresponding street view panorama.
-4. In the street view display, left-click, move the mouse, and right-click to drop markers.
-5. After dropping markers, click the "Get Polygon" button to show polygons on the map.
-
-Feel free to adjust the headings and content as needed.
