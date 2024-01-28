@@ -8,6 +8,7 @@
   - [Street View Display](#street-view-display)
   - [Right Side Buttons](#right-side-buttons)
   - [Aerial View Map](#aerial-view-map)
+  - [Issues/bugs](#Issues)
 
 ## Installation and Run
 
@@ -76,3 +77,25 @@ Functionalities:
 - Double-click a marker to remove it.
 - Click once on a marker to get its latitude and longitude.
 - Use + and - symbols to zoom in and out.
+
+## Issues
+### Sidebar
+  - Make it hide/unhide.
+  - Bugs while editing the coordinates in Display.
+  - Add number as a text input for stting the size of marker.
+  - Add colour for the polygon segmentation for aerial/street view.
+
+### Street-View
+  - Add polygon segmentation from the markers.(currently only markers are drawn , polygon segmentation map is also required)
+  - add the code to save the current view image, panorma image , with whole segmentation.
+  - handle deletion of markers and polygons.(make a undo button)
+  - Check calculation of distance from depth.(from experiments)
+  - Check directions and heading correctness.(from experiments)
+  - Make the update of texture fast.
+
+### Aerial-View
+  - Add tool to draw on aerial view , and update that to the street view.
+  - Update the marker position with the actual panorma image position.
+  - Adding marker from text input does not fetches the panorma image. (Bug)
+  - Make it posible to delete individual polygon aread.
+
