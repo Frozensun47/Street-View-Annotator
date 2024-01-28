@@ -38,7 +38,7 @@ On the left, there is a side bar containing stroke width and color selection too
 
 ## Street View Display
 
-![street-view-gif](utils\Readme\street_view_marker.gif)
+<img src="https://github.com/Frozensun47/Street-View-Annotator/blob/main/utils/Readme/street_view_marker.gif" alt="App Overview GIF" width="400" height="200">
 
 In the middle, there is the street view display with functionalities:
 
