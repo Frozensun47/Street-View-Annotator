@@ -1,15 +1,8 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 from PyQt5 import QtWidgets, QtGui
-from PyQt5.QtOpenGL import QGLWidget
-from PyQt5 import QtCore
-from PyQt5.QtWidgets import QLineEdit,QVBoxLayout, QHBoxLayout, QLabel, QSlider, QColorDialog, QPushButton, QListWidget, QListWidgetItem, QInputDialog, QWidget
-from PyQt5.QtWebEngineWidgets import QWebEngineView
-from PIL import Image, ImageDraw
-from PyQt5.QtCore import Qt, QPoint
+from PyQt5.QtWidgets import  QHBoxLayout, QWidget
 from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtGui import QCursor
-import math
 import numpy as np
 from utils.processor import *
 from utils.sidebar import SidebarWidget
@@ -22,10 +15,12 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QtGui.QIcon("utils\icon.png"))
         # self.image = 'utils/demo_image.jpg'
         # self.depth = 'utils/demo_depth.npy'
-        # self.heading = 0
         self.latitude ,self.longitude = 30.71979998667062, 76.72142742674824
         self.clipboard_lat, self.clipboard_lng = 30.71979998667062, 76.72142742674824
-        self.image, self.depth, self.heading,self.latitude ,self.longitude = process_location(self.latitude ,self.longitude)
+        self.image, self.depth, self.heading,self.latitude ,self.longitude = process_location(self.latitude ,self.longitude) # comment for offline
+        # self.heading = 0 # uncomment for offline
+        # self.image = Image.open('utils/demo_image.jpg') # uncomment for offline
+        # self.depth = np.load('utils/demo_depth.npy') # uncomment for offline
         self.sidebar_widget=None
         self.folium_widget = None
         self.create_gl_widget()
