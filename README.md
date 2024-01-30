@@ -9,6 +9,7 @@
   - [Right Side Buttons](#right-side-buttons)
   - [Aerial View Map](#aerial-view-map)
   - [To-do/ Issues/ bugs](#Issues)
+- [Acknowledgment](## Acknowledgment)
 
 ## Installation and Run
 
@@ -112,3 +113,5 @@ Functionalities:
   - Adding marker from text input does not fetches the panorma image. (Bug)
   - Make it posible to delete individual polygon aread.
 
+## Acknowledgment
+This project was undertaken in collaboration with the ![Geospatial Computer Vision Group](https://anupamsobti.github.io/geospatial-computer-vision/) led by Dr.![Anupam Sobti](https://anupamsobti.github.io/). I am grateful for the support and guidance provided throughout the development of this project.
