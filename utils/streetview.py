@@ -24,6 +24,7 @@ class GLWidget(QGLWidget):
         self.fov = 90
         self.moving = False
         self.coordinates_stack = []
+        self.markers_stack = []
         self.sidebar_widget = sidebar_widget
         self.stroke_width = 25
         self.color = (255,0,0)
@@ -88,6 +89,7 @@ class GLWidget(QGLWidget):
                 print(f"depth= {depth},Distance = {distance},Heading = {self.heading}, Direction = {int(direction)}")
                 lat,lng=get_new_coords(self.lat, self.lng, depth, int(direction))
                 self.draw_point(image_pixel_x, image_pixel_y)
+                self.markers_stack.append((image_pixel_x,image_pixel_y))
                 self.coordinates_stack.append((lat, lng))
                 # print(self.coordinates_stack)
                 # print('current')
@@ -105,6 +107,11 @@ class GLWidget(QGLWidget):
     def mouseReleaseEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
             self.moving = False
+        elif event.button() == QtCore.Qt.RightButton:
+            try:
+                self.draw_polygon(self.markers_stack)
+            except:
+                print('more than markers required')
 
     def mouseMoveEvent(self, event):
         if self.moving:
@@ -149,6 +156,17 @@ class GLWidget(QGLWidget):
         radius = half_size
         point_color = self.color
         draw.ellipse([(center[0] - radius, center[1] - radius), (center[0] + radius, center[1] + radius)], fill=point_color)
+        glDeleteTextures(1, [self.texture])
+        self.texture = glGenTextures(1)
+        glBindTexture(GL_TEXTURE_2D, self.texture)
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, self.image_width, self.image_height, 0, GL_RGB, GL_UNSIGNED_BYTE, self.image.tobytes())
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
+        self.update()
+    def draw_polygon(self,markers_stack):
+        draw = ImageDraw.Draw(self.image)
+        draw.polygon(markers_stack,self.color)
+
         glDeleteTextures(1, [self.texture])
         self.texture = glGenTextures(1)
         glBindTexture(GL_TEXTURE_2D, self.texture)
