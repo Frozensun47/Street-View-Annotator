@@ -1,6 +1,7 @@
 # Annotator
 
 ## Table of Contents
+- [Recent Updates](#Updates)
 - [Installation and Run](#installation-and-run)
 - [Tutorial](#tutorial)
 - [App Overview](#app-overview)
@@ -10,6 +11,10 @@
   - [Aerial View Map](#aerial-view-map)
   - [To-do/ Issues/ bugs](#Issues)
 - [Acknowledgment](## Acknowledgment)
+
+## Updates
+- Added polygons in street view
+- Added opacity and colour modifications for polygons.
 
 ## Installation and Run
 
@@ -100,7 +105,6 @@ Functionalities:
   - Add colour for the polygon segmentation for aerial/street view.
 
 ### Street-View
-  - Add polygon segmentation from the markers.(currently only markers are drawn , polygon segmentation map is also required)
   - add the code to save the current view image, panorma image , with whole segmentation.
   - handle deletion of markers and polygons.(make a undo button)
   - Check calculation of distance from depth.(from experiments)
@@ -111,7 +115,7 @@ Functionalities:
   - Add tool to draw on aerial view , and update that to the street view.
   - Update the marker position with the actual panorma image position.
   - Adding marker from text input does not fetches the panorma image. (Bug)
-  - Make it posible to delete individual polygon aread.
+  - Make it posible to delete individual polygon area.
 
 ## Acknowledgment
 This project was undertaken in collaboration with the [Geospatial Computer Vision Group](https://anupamsobti.github.io/geospatial-computer-vision/) led by [Dr. Anupam Sobti](https://anupamsobti.github.io/). I am grateful for the support and guidance provided throughout the development of this project.
