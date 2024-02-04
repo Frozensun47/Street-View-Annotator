@@ -56,7 +56,6 @@ class MainWindow(QMainWindow):
         self.central_layout.removeWidget(self.gl_widget)
         self.gl_widget.deleteLater()
         self.create_gl_widget()
-
         # Insert the updated GL widget back into the layout
         self.centralWidget().layout().insertWidget(1, self.gl_widget, stretch=1)
 

@@ -180,12 +180,21 @@
       markers = [];
     }
 
-    function drawPolygon(vertices) {
-      // Create a polygon with the given vertices and add it to the map
-      var polygon = L.polygon(vertices).addTo(my_map);
-      // Add the new polygon to the polygons array
-      polygons.push(polygon);
+    function drawPolygon(vertices, color, opacity) {
+        // Convert opacity to a valid Leaflet fillOpacity value
+        var fillOpacity = opacity / 100;  // assuming opacity is in percentage
+    
+        // Create a polygon with the given vertices and add it to the map
+        var polygon = L.polygon(vertices, {
+            color: color,      // Border color
+            fillColor: color,   // Fill color
+            fillOpacity: fillOpacity    // Adjust the fill opacity as needed
+        }).addTo(my_map);
+      
+        // Add the new polygon to the polygons array
+        polygons.push(polygon);
     }
+    
 
     function removePolygons() {
       // Remove all polygons from the map

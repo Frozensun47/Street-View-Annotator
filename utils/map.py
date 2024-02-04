@@ -75,8 +75,8 @@ class FoliumWidget(QWidget):
     def get_polygon(self):
         if len(self.gl_widget.coordinates_stack) >= 3:
             polygon_vertices = ",".join([f"[{lat},{lng}]" for lat, lng in self.gl_widget.coordinates_stack])
-            draw_polygon_script = f"drawPolygon([{polygon_vertices}]);"
+            draw_polygon_script = f"drawPolygon([{polygon_vertices}], '{self.gl_widget.map_color_name}', {self.gl_widget.map_transparency});"
             self.findChild(QWebEngineView).page().runJavaScript(draw_polygon_script)
-            self.gl_widget.coordinates_stack=[]
+            self.gl_widget.coordinates_stack = []
         else:
             print("At least 3 markers are required to draw a polygon.")
