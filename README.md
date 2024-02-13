@@ -7,14 +7,16 @@
 - [App Overview](#app-overview)
   - [Side Bar](#side-bar)
   - [Street View Display](#street-view-display)
-  - [Right Side Buttons](#right-side-buttons)
+  - [Buttons](#right-side-buttons)
   - [Aerial View Map](#aerial-view-map)
   - [To-do/ Issues/ bugs](#Issues)
-- [Acknowledgment](## Acknowledgment)
+- [Acknowledgment](#Acknowledgment)
 
 ## Updates
 - Added polygons in street view
 - Added opacity and colour modifications for polygons.
+- Images can be saved now. (see [Save Current View](#Save-Current-View))
+- Text input boxes have been removed.
 
 ## Installation and Run
 
@@ -67,7 +69,6 @@ In the middle, there is the street view display with functionalities:
 ## Side Buttons
 On the top right side, there are various buttons:
 
-- **Text Input Box:** Paste latitude and longitude for quick marker placement. (format: 18.9198,72.8287 )
 - **Update Map:** Press to update the map with the entered coordinates. (To be pressed after Text Input Box input is provided)
 
 <img src="https://github.com/Frozensun47/Street-View-Annotator/blob/main/utils/Readme/markers.png" alt="markers" width="200" height="200">
@@ -86,6 +87,21 @@ On the top right side, there are various buttons:
 
 - **Get Panorama Image:** Fetches the panorama of the last placed marker on the map and shows it to the street view display.
 
+- **Save Current View:**
+  - Save the current view of the Aerial and Street View Map.
+  - The images are stored in the `Output\Images` directory.
+  - The names of the images are *Base64* encoded.
+  - Decoding the names will reveal:
+    - Latitude
+    - Longitude
+    - Aerial (0) / Street-view (1)
+    - Zoom Level (for aerial currently -1) / FOV (for street view)
+    - Direction/Pitch (-1 for Aerial)
+    - Yaw (-1 for Aerial)
+    - Panorma (0) / Current-View (1) / Aerial View (-1)
+  - This encoding scheme is implemented to facilitate subsequent processing of images.
+
+
 
 ## Aerial View Map
 Functionalities:
@@ -97,7 +113,7 @@ Functionalities:
 - Click once on a marker to get its latitude and longitude.
 - Use + and - symbols to zoom in and out.
 
-## Issues
+## Issues / pending work
 ### Sidebar
   - Make it hide/unhide.
   - Bugs while editing the coordinates in Display.
@@ -116,6 +132,8 @@ Functionalities:
   - Update the marker position with the actual panorma image position.
   - Adding marker from text input does not fetches the panorma image. (Bug)
   - Make it posible to delete individual polygon area.
+### Saving image
+  - Add zoom level while saving images.
 
 ## Acknowledgment
 This project was undertaken in collaboration with the [Geospatial Computer Vision Group](https://anupamsobti.github.io/geospatial-computer-vision/) led by [Dr. Anupam Sobti](https://anupamsobti.github.io/). I am grateful for the support and guidance provided throughout the development of this project.

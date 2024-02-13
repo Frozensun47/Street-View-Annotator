@@ -33,9 +33,9 @@ class SidebarWidget(QtWidgets.QWidget):
         self.map_transparency_slider = QSlider(QtCore.Qt.Horizontal)
         self.map_transparency_slider.setMinimum(0)
         self.map_transparency_slider.setMaximum(100)
-        self.map_transparency_slider.setValue(self.gl_widget.map_transparency * 100)  # Convert to percentage
+        self.map_transparency_slider.setValue(int(self.gl_widget.map_transparency * 100))  # Convert to percentage
         self.map_transparency_slider.valueChanged.connect(self.on_map_transparency_change)
-        self.map_transparency_label_value = QLabel(f"Current Map Transparency: {self.gl_widget.map_transparency}")
+        self.map_transparency_label_value = QLabel(f"Current Map Transparency: {int(self.gl_widget.map_transparency * 100)}")
 
         # Color Palette for polygons
         color_label = QLabel("Polygon Color:")

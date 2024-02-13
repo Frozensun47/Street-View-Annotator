@@ -1,5 +1,7 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
+import base64
+import os
 from PyQt5.QtOpenGL import QGLWidget
 from PyQt5 import QtCore
 from PIL import Image, ImageDraw
@@ -17,13 +19,14 @@ class GLWidget(QGLWidget):
         self.image = image
         self.depth = depth
         self.image_width, self.image_height = self.image.size
-        
+        self.output_directory = 'Output'
         self.yaw = 270
         self.heading = heading
         self.pitch = 0
         self.prev_dx = 0
         self.prev_dy = 0
         self.fov = 90
+        self.direction = 0
         self.moving = False
         
         self.coordinates_stack = []
@@ -90,11 +93,11 @@ class GLWidget(QGLWidget):
         index_y, index_x = self.calculate_depth_indices(image_pixel_x, image_pixel_y)
         depth = self.depth[index_y][index_x]
 
-        distance, direction = self.calculate_distance_and_direction(depth, cal_pitch, cal_yaw)
+        distance, self.direction = self.calculate_distance_and_direction(depth, cal_pitch, cal_yaw)
 
         if depth > 0 and distance > 0:
-            print(f"depth = {depth}, Distance = {distance}, Heading = {self.heading}, Direction = {int(direction)}")
-            lat, lng = self.calculate_new_coords(depth, direction)
+            print(f"depth = {depth}, Distance = {distance}, Heading = {self.heading}, Direction = {int(self.direction)}")
+            lat, lng = self.calculate_new_coords(depth, self.direction)
             self.draw_point(image_pixel_x, image_pixel_y)
             self.markers_stack.append((image_pixel_x, image_pixel_y))
             self.coordinates_stack.append((lat, lng))
@@ -133,8 +136,6 @@ class GLWidget(QGLWidget):
 
     def calculate_new_coords(self, depth, direction):
         return get_new_coords(self.lat, self.lng, depth, int(direction))
-
-
 
     def mouseReleaseEvent(self, event):
         if event.button() == QtCore.Qt.LeftButton:
@@ -204,14 +205,31 @@ class GLWidget(QGLWidget):
         self.update()
 
     def draw_polygon(self,markers_stack):
-        image = self.image.copy()
+        
         draw = ImageDraw.Draw(self.image,'RGBA') # 'RGBA' for transparency
         draw.polygon(markers_stack,self.color)
 
         glDeleteTextures(1, [self.texture])
         self.texture = glGenTextures(1)
         glBindTexture(GL_TEXTURE_2D, self.texture)
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, self.image_width, self.image_height, 0, GL_RGB, GL_UNSIGNED_BYTE, image.tobytes())
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, self.image_width, self.image_height, 0, GL_RGB, GL_UNSIGNED_BYTE, self.image.tobytes())
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR)
         self.update()
+
+    def save_image(self):
+        ''' 
+            - Latitude
+            - Longitude
+            - Aerial (0) / Street-view (1)
+            - Zoom Level (for aerial) / FOV (for street view)
+            - Direction/Pitch (-1 for Aerial)
+            - Yaw (-1 for Aerial)
+            - Panorma (0) / Current-View (1) / Aerial View (-1)
+        '''
+        filename = f'{self.lat},{self.lng},1,{self.fov},{self.pitch},{self.yaw},{0}'
+
+        encoded_filename = base64.b64encode(filename.encode()).decode()
+        full_path = os.path.join(self.output_directory, f'{encoded_filename}.png')
+        self.image.save(full_path)
+        print(f"Street-view Image saved")

@@ -1,6 +1,7 @@
 from PyQt5.QtWidgets import QLineEdit,QVBoxLayout, QHBoxLayout, QLabel, QSlider, QColorDialog, QPushButton, QListWidget, QListWidgetItem, QInputDialog, QWidget
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from utils.processor import *
+from utils.utils import save_image
 
 
 class FoliumWidget(QWidget):
@@ -11,6 +12,7 @@ class FoliumWidget(QWidget):
         self.markers = []
         self.Polygons = []
         self.init_ui()
+        self.folder_path = 'Output'
 
     def init_ui(self):
         layout = QVBoxLayout()
@@ -50,13 +52,9 @@ class FoliumWidget(QWidget):
         layout.addWidget(web_view)
 
     def update_map_with_input(self):
-        coords_text = self.coord_input.text()
-        try:
-            lat, lng = map(float, coords_text.split(','))
-            self.add_marker(lat,lng)
-        except ValueError:
-            print("Invalid coordinates format. Please enter as 'latitude, longitude'.")
-
+        save_image(self.findChild(QWebEngineView),self.main_window.latitude ,self.main_window.longitude)
+        save_image(self.gl_widget.image,self.gl_widget.lat,self.gl_widget.lng,self.gl_widget.fov,self.gl_widget.pitch,self.gl_widget.yaw,street=True)
+        
     def add_marker(self,lat,lng):
         update_script = f"updateMapWithCoordinates({lat}, {lng});"
         self.findChild(QWebEngineView).page().runJavaScript(update_script)
@@ -80,3 +78,12 @@ class FoliumWidget(QWidget):
             self.gl_widget.coordinates_stack = []
         else:
             print("At least 3 markers are required to draw a polygon.")
+
+    def save_map_as_png(self):
+        folder_path = 'Output'
+        # Ensure the file extension is .png
+        if not folder_path.lower().endswith(".png"):
+            folder_path += ".png"
+        # Capture the current view of the map as PNG
+        self.findChild(QWebEngineView).grab().save(folder_path)
+        print(f"Map saved as PNG: {folder_path}")
